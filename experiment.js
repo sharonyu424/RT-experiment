@@ -181,14 +181,3 @@ var main_timeline = [
     test_procedure,
     close_fullscreen,
 ]
-
-/* Launch jsPsych */
-jsPsych.init({
-    timeline: main_timeline,
-    on_finish: function() {
-        jsPsych.data.get().localSave('csv', `Posner-cueing-task.csv`) // download from browser
-        document.getElementById('jspsych-content').innerHTML += '实验结束，感谢您的参与！'
-    },
-    show_progress_bar: true,
-    default_iti: 500,
-})
