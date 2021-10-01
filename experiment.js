@@ -12,7 +12,7 @@ var set_html_style = {
         document.body.style.backgroundColor = 'rgb(250, 250, 250)' // background color
         document.body.style.color = 'black' // font color
         document.body.style.fontSize = '20pt'
-        document.body.style.fontFamily = '微软雅黑'
+        document.body.style.fontFamily = 'Times New Roman'
         document.body.style.fontWeight = 'bold' // 'normal', 'bold'
         document.body.style.lineHeight = '1.6em' // line space
         document.body.style.cursor = 'default' // 'default', 'none', 'wait', ...
@@ -49,7 +49,7 @@ var open_fullscreen = {
 
 var welcome = {
     type: 'html-keyboard-response',
-    stimulus: `欢迎参与实验，请按空格键开始`,
+    stimulus: `Welcome`,
     choices: [' '],
     post_trial_gap: 100
 }
@@ -68,7 +68,7 @@ var fixation = {
     stimulus: `<div class="container"><div class="square"></div><div class="plus">+</div><div class="square"
   ></div></div>`,
     choices: jsPsych.NO_KEYS,
-    prompt: '<p style="font-size:16pt; color:red;">F键对应左边的方框，J键对应右边的方框</p>',
+    prompt: '<p style="font-size:16pt; color:red;">F J</p>',
     data: {
         task: 'fixation',
     },
@@ -127,7 +127,7 @@ var cueing = {
     data: {
         task: 'cue',
     },
-    prompt: '<p style="font-size:16pt; color:red;">F键对应左边的方框，J键对应右边的方框</p>',
+    prompt: '<p style="font-size:16pt; color:red;">F J</p>',
     trial_duration: 250,
 }
 
@@ -135,7 +135,7 @@ var stimuli = {
     type: 'categorize-html',
     stimulus: jsPsych.timelineVariable('stimulus'),
     choices: ['f', 'j'],
-    prompt: '<p style="font-size:16pt; color:red;">F键对应左边的方框，J键对应右边的方框</p>',
+    prompt: '<p style="font-size:16pt; color:red;">F J</p>',
     data: {
         task: 'response',
         correct_response: jsPsych.timelineVariable('correct_response'),
@@ -147,19 +147,19 @@ var stimuli = {
         }
         return 70;
     },
-    correct_text: `<p style="font-size:16pt; color:red;">回答正确！</p>`,
-    incorrect_text: `<p style="font-size:16pt; color:red;">回答错误！</p>`,
+    correct_text: `<p style="font-size:16pt; color:red;">Right！</p>`,
+    incorrect_text: `<p style="font-size:16pt; color:red;">Wrong！</p>`,
     feedback_duration: 1000,
     on_load: function() {
         jsPsych.pluginAPI.setTimeout(function() {
-            jsPsych.endExperiment('用户未反应超过三十秒<br/>');
+            jsPsych.endExperiment('over 30s<br/>');
         }, 30000);
     },
     on_finish: function() {
         jsPsych.pluginAPI.clearAllTimeouts();
     }
     // show_feedback_on_timeout: false,
-    // timeout_message: `超时！`,
+    // timeout_message: `Timeout！`,
     // trial_duration: 30000,
 }
 
