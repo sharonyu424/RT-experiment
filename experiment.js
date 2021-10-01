@@ -176,8 +176,6 @@ var test_procedure = {
 
 var main_timeline = [
     set_html_style,
-    open_fullscreen,
     welcome,
     test_procedure,
-    close_fullscreen,
 ]
