@@ -28,37 +28,12 @@ var set_html_style = {
 }
 
 /* Blocks: Basics */
-var open_fullscreen = {
-    type: 'fullscreen',
-    fullscreen_mode: true,
-    message: `
-    <p style="font: 16pt 微软雅黑; text-align: left; line-height: 1.6em">
-    <b>
-    测验将在一个「全屏页面」开始，为确保最佳效果，请你：<br/>
-    （1）在电脑上进行测验，并使用主流浏览器打开本网页<br/>
-    &emsp;&emsp;（Chrome、Edge、Firefox、Safari等，不要用IE）<br/>
-    （2）关掉电脑上其他正在运行的程序或将其最小化<br/>
-    （3）将手机调至静音，并尽可能减少环境噪音干扰<br/>
-    （4）在测验过程中不要退出全屏<br/>
-    </b>
-    如果你同意参与，并且清楚理解了上述要求，请点击开始：
-    </p>`,
-    button_label: '点击这里全屏开始',
-    delay_after: 100
-}
 
 var welcome = {
     type: 'html-keyboard-response',
     stimulus: `欢迎参与实验，请按空格键开始`,
     choices: [' '],
     post_trial_gap: 100
-}
-
-
-var close_fullscreen = {
-    type: 'fullscreen',
-    fullscreen_mode: false,
-    delay_after: 0
 }
 
 
@@ -168,7 +143,7 @@ var test_procedure = {
     timeline: [fixation, cueing, fixation, stimuli],
     timeline_variables: test_variables,
     randomize_order: true,
-    repetitions: 5,
+    repetitions: 1,
 }
 
 /* Combine Timelines */
@@ -179,3 +154,4 @@ var main_timeline = [
     welcome,
     test_procedure,
 ]
+

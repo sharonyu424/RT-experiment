@@ -4,69 +4,51 @@
 <head>
     <meta charset="utf-8">
     <title>experiment cueing</title>
-    <script src="jspsych-6.0//jspsych.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-call-function.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-fullscreen.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-html-button-response.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-survey-multi-select.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-html-slider-response.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-instructions.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-categorize-html.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-survey-text.js"></script>
-    <script src="jspsych-6.0/plugins/jspsych-image-keyboard-response.js"></script>
-    <link rel="stylesheet" type="text/css" href="jspsych-6.0/css/jspsych.css">
+    <script src="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/jspsych.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/plugins/jspsych-call-function.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/plugins/jspsych-fullscreen.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/plugins/jspsych-categorize-html.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jspsych@6.0.0/css/jspsych.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://sharonyu424.github.io/RT-experiment/style.css"> -->
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="experiment.js"></script>
 </head>
 
 <body>
-
-    <div>
+<!--     <div>
         <span style="font-size: 24px;">
-        <br><br>
-        If you are seeing this message for <span style="color: rgb(255, 0, 0);"><b>more than 5 minutes</b></span>,<br>
-        please screen-capture this screen and send the image to us.
-        <br><br>
-        <span style="font-size: 28px;">We are very sorry for the inconvenience.</span>
+            <br><br>
+            If you are seeing this message for <span style="color: rgb(255, 0, 0);"><b>more than 5 minutes</b></span>,<br>
+            please screen-capture this screen and send the image to us.
+            <br><br>
+            <span style="font-size: 28px;">We are very sorry for the inconvenience.</span>
         </span>
-    </div>
-    
-    <style>
-        #display_stage_background {
-          width: 100vw;
-          background-color: white;
-          z-index: -1;
-        }
-    
-        #display_stage {
-          position: fixed;
-          left: 1vw;
-          top: 1vh;
-          height: 98vh;
-          width: 98vw;
-          background-color: white;
-          box-shadow: 1px 1px 1px #999;
-          border-radius: 15px;
-          z-index: 0;
-        }
-    </style>
-
+    </div> -->
     <div id='display_stage_background'></div>
     <div id='display_stage'></div>
-    
 </body>
+<script src="experiment.js"></script>
 <script>
-    jsPsych.init({
+jsPsych.init({
     timeline: main_timeline,
-    display_element: 'display_stage',
     on_finish: function() {
+        // 存入文件
         jsPsych.data.get().localSave('csv', `Posner-cueing-task.csv`) // download from browser
-        document.getElementById('jspsych-content').innerHTML += '实验结束，感谢您的参与！'
+        // 汇总统计数据
+        var df = jsPsych.data.get().filter({ task: 'response' });
+        var max_time = df.select('rt').max();
+        var min_time = df.select('rt').min();
+        var average = df.select('rt').mean();
+        var acc = Math.round(df.filter({ correct: true }).count() / df.count() * 100);
+        document.getElementById('jspsych-content').innerHTML += `实验结束，感谢您的参与！<br/>
+        <br/><p style="text-align:left;font-size:14pt">max_time: ${max_time}ms<br/>min_time: ${min_time}ms
+        <br/>average: ${average}ms<br/>
+        accuracy: ${acc}%</p>`;
     },
+    display_element: 'display_stage',
     show_progress_bar: true,
     default_iti: 500,
-    })
+})
 </script>
 
 </html>
