@@ -63,6 +63,7 @@
 <script>
     jsPsych.init({
     timeline: main_timeline,
+    display_element: 'display_stage',
     on_finish: function() {
         jsPsych.data.get().localSave('csv', `Posner-cueing-task.csv`) // download from browser
         document.getElementById('jspsych-content').innerHTML += '实验结束，感谢您的参与！'
