@@ -1,0 +1,58 @@
+body {
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.jspsych-btn {
+    font-size: 16pt;
+    font-family: 微软雅黑;
+    font-weight: normal;
+    margin: 1em 0em;
+}
+
+.container {
+    border: 2px solid black;
+    margin: 0 auto;
+    width: 500px;
+    height: 250px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.square {
+    border: 1px solid black;
+    padding:  0 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 100px auto;
+    font-size: 50px;
+}
+
+.square-bold {
+    border: 3px solid black;
+    padding: 0 3px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 100px auto;
+    font-size: 50px;
+}
+
+.plus {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 100px auto;
+    font-size: 60px;
+}
