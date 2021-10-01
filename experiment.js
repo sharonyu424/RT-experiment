@@ -143,7 +143,7 @@ var test_procedure = {
     timeline: [fixation, cueing, fixation, stimuli],
     timeline_variables: test_variables,
     randomize_order: true,
-    repetitions: 1,
+    repetitions: 5,
 }
 
 /* Combine Timelines */
